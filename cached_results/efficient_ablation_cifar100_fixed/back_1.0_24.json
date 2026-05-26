@@ -1,0 +1,61 @@
+{
+  "dataset": "cifar100",
+  "sequential_paths": {
+    "1-8-15": {
+      "epoch_allocation": [
+        1,
+        8,
+        15
+      ],
+      "total_epochs": 24,
+      "final_accuracy": 0.153,
+      "component_accuracies": [
+        0.0274,
+        0.1006,
+        0.153
+      ],
+      "cumulative_epochs": [
+        1,
+        9,
+        24
+      ],
+      "trainable_params_per_component": [
+        5220,
+        5220,
+        5220
+      ],
+      "trainable_params": 5220,
+      "training_time_seconds": 42.565656423568726
+    }
+  },
+  "ablation_config": {
+    "type": "sequential",
+    "rank": 3,
+    "total_epochs": 24,
+    "alpha": -1.0,
+    "schedule": [
+      1,
+      8,
+      15
+    ],
+    "schedule_str": "1-8-15"
+  },
+  "flops": {
+    "architecture": "vision_mlp",
+    "layers": [
+      [
+        3072,
+        512
+      ],
+      [
+        512,
+        512
+      ],
+      [
+        512,
+        100
+      ]
+    ],
+    "samples_per_epoch": 25000
+  }
+}
