@@ -1,0 +1,64 @@
+{
+  "dataset": "cifar10",
+  "base_model": {
+    "epochs": 10,
+    "test_acc_new_classes": 0.0,
+    "num_total_params": 1841162
+  },
+  "standard_lora": {
+    "rank": 3,
+    "epochs": 10,
+    "test_acc": 0.6722,
+    "trainable_params": 15390
+  },
+  "sequential_paths": {
+    "6-6-6": {
+      "epoch_allocation": [
+        6,
+        6,
+        6
+      ],
+      "component_accuracies": [
+        0.6082,
+        0.6646,
+        0.6836
+      ],
+      "cumulative_epochs": [
+        6,
+        12,
+        18
+      ],
+      "trainable_params_per_component": [
+        5130,
+        5130,
+        5130
+      ],
+      "final_accuracy": 0.6836,
+      "total_epochs": 18
+    }
+  },
+  "config": {
+    "lr": 0.001,
+    "seed": 46,
+    "batch_size": 64,
+    "sweep": "fig2"
+  },
+  "flops": {
+    "architecture": "vision_mlp",
+    "layers": [
+      [
+        3072,
+        512
+      ],
+      [
+        512,
+        512
+      ],
+      [
+        512,
+        10
+      ]
+    ],
+    "samples_per_epoch": 25000
+  }
+}

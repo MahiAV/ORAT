@@ -1,0 +1,64 @@
+{
+  "dataset": "mnist",
+  "base_model": {
+    "epochs": 10,
+    "test_acc_new_classes": 0.0,
+    "num_total_params": 669706
+  },
+  "standard_lora": {
+    "rank": 3,
+    "epochs": 10,
+    "test_acc": 0.9699650277720634,
+    "trainable_params": 8526
+  },
+  "sequential_paths": {
+    "6-6-6": {
+      "epoch_allocation": [
+        6,
+        6,
+        6
+      ],
+      "component_accuracies": [
+        0.9257354453816087,
+        0.955976136597408,
+        0.9683192758691628
+      ],
+      "cumulative_epochs": [
+        6,
+        12,
+        18
+      ],
+      "trainable_params_per_component": [
+        2842,
+        2842,
+        2842
+      ],
+      "final_accuracy": 0.9683192758691628,
+      "total_epochs": 18
+    }
+  },
+  "config": {
+    "lr": 0.001,
+    "seed": 42,
+    "batch_size": 64,
+    "sweep": "fig2"
+  },
+  "flops": {
+    "architecture": "vision_mlp",
+    "layers": [
+      [
+        784,
+        512
+      ],
+      [
+        512,
+        512
+      ],
+      [
+        512,
+        10
+      ]
+    ],
+    "samples_per_epoch": 29404
+  }
+}
