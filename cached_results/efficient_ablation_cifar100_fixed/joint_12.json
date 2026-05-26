@@ -1,0 +1,34 @@
+{
+  "dataset": "cifar100",
+  "standard_lora": {
+    "epochs": 12,
+    "rank": 3,
+    "final_accuracy": 0.1768,
+    "trainable_params": 15660,
+    "total_params": 1902992,
+    "training_time_seconds": 22.91490888595581
+  },
+  "ablation_config": {
+    "type": "joint",
+    "rank": 3,
+    "epochs": 12
+  },
+  "flops": {
+    "architecture": "vision_mlp",
+    "layers": [
+      [
+        3072,
+        512
+      ],
+      [
+        512,
+        512
+      ],
+      [
+        512,
+        100
+      ]
+    ],
+    "samples_per_epoch": 25000
+  }
+}
