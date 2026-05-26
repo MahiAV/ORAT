@@ -1,0 +1,114 @@
+{
+  "dataset": "sst2",
+  "standard_lora": null,
+  "sequential_paths": {
+    "26-9-1": {
+      "epoch_allocation": [
+        26,
+        9,
+        1
+      ],
+      "component_history": [
+        {
+          "component_index": 1,
+          "epochs": 26,
+          "accuracy_after": 0.8715596330275229,
+          "validation_loss_after": 0.2998408079147339
+        },
+        {
+          "component_index": 2,
+          "epochs": 9,
+          "accuracy_after": 0.875,
+          "validation_loss_after": 0.29770877957344055
+        },
+        {
+          "component_index": 3,
+          "epochs": 1,
+          "accuracy_after": 0.8761467889908257,
+          "validation_loss_after": 0.29766538739204407
+        }
+      ],
+      "final_accuracy": 0.8761467889908257,
+      "total_epochs": 36,
+      "trainable_params": 18432,
+      "total_params": 67065602,
+      "training_time_seconds": 1546.3127126693726
+    }
+  },
+  "ablation_config": {
+    "type": "sequential",
+    "rank": 3,
+    "total_epochs": 36,
+    "alpha": 2.0,
+    "schedule": [
+      26,
+      9,
+      1
+    ],
+    "schedule_str": "26-9-1"
+  },
+  "config": {
+    "model_name": "distilbert-base-uncased",
+    "batch_size": 32,
+    "learning_rate": 2e-05,
+    "weight_decay": 0.01,
+    "max_length": 128,
+    "precision": "bf16"
+  },
+  "flops": {
+    "architecture": "distilbert_qv",
+    "layers": [
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ]
+    ],
+    "samples_per_epoch": 8620672,
+    "num_train_examples": 67349,
+    "max_length": 128
+  }
+}

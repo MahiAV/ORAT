@@ -1,0 +1,114 @@
+{
+  "dataset": "sst2",
+  "standard_lora": null,
+  "sequential_paths": {
+    "43-16-1": {
+      "epoch_allocation": [
+        43,
+        16,
+        1
+      ],
+      "component_history": [
+        {
+          "component_index": 1,
+          "epochs": 43,
+          "accuracy_after": 0.8864678899082569,
+          "validation_loss_after": 0.2839842736721039
+        },
+        {
+          "component_index": 2,
+          "epochs": 16,
+          "accuracy_after": 0.875,
+          "validation_loss_after": 0.28342992067337036
+        },
+        {
+          "component_index": 3,
+          "epochs": 1,
+          "accuracy_after": 0.8772935779816514,
+          "validation_loss_after": 0.28349289298057556
+        }
+      ],
+      "final_accuracy": 0.8772935779816514,
+      "total_epochs": 60,
+      "trainable_params": 18432,
+      "total_params": 67065602,
+      "training_time_seconds": 2654.7451300621033
+    }
+  },
+  "ablation_config": {
+    "type": "sequential",
+    "rank": 3,
+    "total_epochs": 60,
+    "alpha": 1.8,
+    "schedule": [
+      43,
+      16,
+      1
+    ],
+    "schedule_str": "43-16-1"
+  },
+  "config": {
+    "model_name": "distilbert-base-uncased",
+    "batch_size": 32,
+    "learning_rate": 2e-05,
+    "weight_decay": 0.01,
+    "max_length": 128,
+    "precision": "bf16"
+  },
+  "flops": {
+    "architecture": "distilbert_qv",
+    "layers": [
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ]
+    ],
+    "samples_per_epoch": 8620672,
+    "num_train_examples": 67349,
+    "max_length": 128
+  }
+}

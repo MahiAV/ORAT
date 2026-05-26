@@ -1,0 +1,113 @@
+{
+  "dataset": "sst2",
+  "standard_lora": {
+    "rank": 3,
+    "epochs": 6,
+    "final_accuracy": 0.8497706422018348,
+    "history": [
+      {
+        "epoch": 1,
+        "validation_loss": 0.6491565108299255,
+        "accuracy": 0.5240825688073395
+      },
+      {
+        "epoch": 2,
+        "validation_loss": 0.4883013963699341,
+        "accuracy": 0.8119266055045872
+      },
+      {
+        "epoch": 3,
+        "validation_loss": 0.4060383439064026,
+        "accuracy": 0.8348623853211009
+      },
+      {
+        "epoch": 4,
+        "validation_loss": 0.3761971890926361,
+        "accuracy": 0.8394495412844036
+      },
+      {
+        "epoch": 5,
+        "validation_loss": 0.3571004569530487,
+        "accuracy": 0.8428899082568807
+      },
+      {
+        "epoch": 6,
+        "validation_loss": 0.3430503308773041,
+        "accuracy": 0.8497706422018348
+      }
+    ],
+    "trainable_params": 55296,
+    "total_params": 67010306,
+    "training_time_seconds": 248.60451197624207
+  },
+  "sequential_paths": {},
+  "ablation_config": {
+    "type": "joint",
+    "rank": 3,
+    "epochs": 6
+  },
+  "config": {
+    "model_name": "distilbert-base-uncased",
+    "batch_size": 32,
+    "learning_rate": 2e-05,
+    "weight_decay": 0.01,
+    "max_length": 128,
+    "precision": "bf16"
+  },
+  "flops": {
+    "architecture": "distilbert_qv",
+    "layers": [
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ]
+    ],
+    "samples_per_epoch": 8620672,
+    "num_train_examples": 67349,
+    "max_length": 128
+  }
+}

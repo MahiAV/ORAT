@@ -1,0 +1,114 @@
+{
+  "dataset": "sst2",
+  "standard_lora": null,
+  "sequential_paths": {
+    "1-7-16": {
+      "epoch_allocation": [
+        1,
+        7,
+        16
+      ],
+      "component_history": [
+        {
+          "component_index": 1,
+          "epochs": 1,
+          "accuracy_after": 0.5401376146788991,
+          "validation_loss_after": 0.6848032474517822
+        },
+        {
+          "component_index": 2,
+          "epochs": 7,
+          "accuracy_after": 0.838302752293578,
+          "validation_loss_after": 0.3769744038581848
+        },
+        {
+          "component_index": 3,
+          "epochs": 16,
+          "accuracy_after": 0.875,
+          "validation_loss_after": 0.310394287109375
+        }
+      ],
+      "final_accuracy": 0.875,
+      "total_epochs": 24,
+      "trainable_params": 18432,
+      "total_params": 67065602,
+      "training_time_seconds": 1210.9983813762665
+    }
+  },
+  "ablation_config": {
+    "type": "sequential",
+    "rank": 3,
+    "total_epochs": 24,
+    "alpha": -1.4,
+    "schedule": [
+      1,
+      7,
+      16
+    ],
+    "schedule_str": "1-7-16"
+  },
+  "config": {
+    "model_name": "distilbert-base-uncased",
+    "batch_size": 32,
+    "learning_rate": 2e-05,
+    "weight_decay": 0.01,
+    "max_length": 128,
+    "precision": "bf16"
+  },
+  "flops": {
+    "architecture": "distilbert_qv",
+    "layers": [
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ]
+    ],
+    "samples_per_epoch": 8620672,
+    "num_train_examples": 67349,
+    "max_length": 128
+  }
+}

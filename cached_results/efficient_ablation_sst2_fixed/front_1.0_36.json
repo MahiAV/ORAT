@@ -1,0 +1,114 @@
+{
+  "dataset": "sst2",
+  "standard_lora": null,
+  "sequential_paths": {
+    "23-12-1": {
+      "epoch_allocation": [
+        23,
+        12,
+        1
+      ],
+      "component_history": [
+        {
+          "component_index": 1,
+          "epochs": 23,
+          "accuracy_after": 0.8681192660550459,
+          "validation_loss_after": 0.3045766353607178
+        },
+        {
+          "component_index": 2,
+          "epochs": 12,
+          "accuracy_after": 0.8761467889908257,
+          "validation_loss_after": 0.29715079069137573
+        },
+        {
+          "component_index": 3,
+          "epochs": 1,
+          "accuracy_after": 0.8761467889908257,
+          "validation_loss_after": 0.29729047417640686
+        }
+      ],
+      "final_accuracy": 0.8761467889908257,
+      "total_epochs": 36,
+      "trainable_params": 18432,
+      "total_params": 67065602,
+      "training_time_seconds": 1576.2621104717255
+    }
+  },
+  "ablation_config": {
+    "type": "sequential",
+    "rank": 3,
+    "total_epochs": 36,
+    "alpha": 1.0,
+    "schedule": [
+      23,
+      12,
+      1
+    ],
+    "schedule_str": "23-12-1"
+  },
+  "config": {
+    "model_name": "distilbert-base-uncased",
+    "batch_size": 32,
+    "learning_rate": 2e-05,
+    "weight_decay": 0.01,
+    "max_length": 128,
+    "precision": "bf16"
+  },
+  "flops": {
+    "architecture": "distilbert_qv",
+    "layers": [
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ]
+    ],
+    "samples_per_epoch": 8620672,
+    "num_train_examples": 67349,
+    "max_length": 128
+  }
+}

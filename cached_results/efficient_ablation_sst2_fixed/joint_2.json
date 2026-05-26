@@ -1,0 +1,93 @@
+{
+  "dataset": "sst2",
+  "standard_lora": {
+    "rank": 3,
+    "epochs": 2,
+    "final_accuracy": 0.8165137614678899,
+    "history": [
+      {
+        "epoch": 1,
+        "validation_loss": 0.66877281665802,
+        "accuracy": 0.5091743119266054
+      },
+      {
+        "epoch": 2,
+        "validation_loss": 0.4680982232093811,
+        "accuracy": 0.8165137614678899
+      }
+    ],
+    "trainable_params": 55296,
+    "total_params": 67010306,
+    "training_time_seconds": 82.74216890335083
+  },
+  "sequential_paths": {},
+  "ablation_config": {
+    "type": "joint",
+    "rank": 3,
+    "epochs": 2
+  },
+  "config": {
+    "model_name": "distilbert-base-uncased",
+    "batch_size": 32,
+    "learning_rate": 2e-05,
+    "weight_decay": 0.01,
+    "max_length": 128,
+    "precision": "bf16"
+  },
+  "flops": {
+    "architecture": "distilbert_qv",
+    "layers": [
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ],
+      [
+        768,
+        768
+      ]
+    ],
+    "samples_per_epoch": 8620672,
+    "num_train_examples": 67349,
+    "max_length": 128
+  }
+}
