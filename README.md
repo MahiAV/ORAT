@@ -1,7 +1,6 @@
-# TMLR Rebuttal — Figure Reproduction Bundle
+# One Rank at a Time: Code and Figure Reproduction
 
-This directory regenerates every figure shipped in the `UpdatedPaper.tex`
-rebuttal of *One Rank at a Time* from clean, self-contained Python.
+This repository contains the code and cached results for reproducing the experiments and figures in the TMLR paper "One Rank at a Time: Cascading Error Dynamics in Sequential Learning."
 
 ```
 tmlr_deliverable/
