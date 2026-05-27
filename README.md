@@ -21,11 +21,7 @@
 
 The sequential procedure we analyse. Given $\mathbf{X} \in \mathbb{R}^{d \times n}$ and $\mathbf{Y} \in \mathbb{R}^{m \times n}$, find low-rank $\mathbf{W} = \mathbf{B}\mathbf{A}$ of rank $r \ll \min(m, d)$ such that $\mathbf{Y} \approx \mathbf{W}\mathbf{X}$, solved **sequentially**:
 
-$$
-(\mathbf{a}_k, \mathbf{b}_k) \;=\; \arg\min_{\mathbf{a}, \mathbf{b}} \tfrac{1}{2}\Big\|\mathbf{Y}_k - \mathbf{b}\,\mathbf{a}^\top \mathbf{X}\Big\|_F^2 ,
-\qquad
-\mathbf{Y}_{k+1} \;\leftarrow\; \mathbf{Y}_k - \mathbf{b}_k\,\mathbf{a}_k^\top \mathbf{X}.
-$$
+$$(\mathbf{a}_k, \mathbf{b}_k) = \arg\min_{\mathbf{a}, \mathbf{b}} \tfrac{1}{2}\, \Vert \mathbf{Y}_k - \mathbf{b}\, \mathbf{a}^\top \mathbf{X} \Vert_F^2 , \qquad \mathbf{Y}_{k+1} \leftarrow \mathbf{Y}_k - \mathbf{b}_k\, \mathbf{a}_k^\top \mathbf{X}.$$
 
 <p align="center">
   <img src="https://akyrillidis.github.io/aiowls/assets/img/one_rank/rebuttal_fig1_final-1.png" width="100%">
@@ -37,7 +33,7 @@ $$
 ## ✨ Key Features
 
 - **Closed-form cascade bound** — Theorem 1 gives an explicit upper bound on residual training error as
-$$\Big\|\mathbf{Y} - \sum_{k=1}^{r} \mathbf{b}_k \mathbf{a}_k^\top \mathbf{X}\Big\|_F \;\le\; \underbrace{\Big(\sum_{k \gt r}(\sigma_k^\star)^2\Big)^{1/2}}_{\text{truncation tail}} \;+\; \underbrace{\sum_{k=1}^{r}\Big(\prod_{j \lt k} \rho_j\Big)\,\|\boldsymbol{\Psi}_k\|_F}_{\text{cascade amplification}}$$
+$$\Big\Vert \mathbf{Y} - \sum_{k=1}^{r} \mathbf{b}_k \mathbf{a}_k^\top \mathbf{X} \Big\Vert_F \;\le\; \underbrace{\Big(\sum_{k \gt r}(\sigma_k^\star)^2\Big)^{1/2}}_{\text{truncation tail}} \;+\; \underbrace{\sum_{k=1}^{r}\Big(\prod_{j \lt k} \rho_j\Big)\, \Vert \mathbf{\Psi}_k \Vert_F}_{\text{cascade amplification}}$$
 where $\rho_j = 2 + 6\sigma_j^\star / \mathcal{T}_j^\star$ measures the spectral-gap amplification (singular values $\sigma_j^\star$ and gaps $\mathcal{T}_j^\star = \sigma_j^\star - \sigma_{j+1}^\star$ are those of the output matrix $\mathbf{Y}$).
 - **Parameter recovery, noiseless + noisy** — Theorems 2 and 3 extend the bound to true-parameter recovery, with a clean bias-variance trade-off in the truncation rank $r$ under Gaussian label noise.
 - **Practical compute prescription** — A one-parameter $\alpha$-family of schedules $t_k(\alpha) = 1 + \alpha \cdot x_k$ (where $x_k \in [+1, -1]$ is the centred position) makes the "more-first" intuition quantitative; optimal $\alpha$ saturates near $1.5$.
@@ -50,8 +46,8 @@ where $\rho_j = 2 + 6\sigma_j^\star / \mathcal{T}_j^\star$ measures the spectral
 
 | # | Theorem | What it bounds | Assumptions |
 |---|---------|----------------|-------------|
-| 1 | **Training-error propagation** | $\|\mathbf{Y} - \sum_k \mathbf{b}_k \mathbf{a}_k^\top \mathbf{X}\|_F \le$ truncation tail + cascade-amplified $\sum_k \|\boldsymbol{\Psi}_k\|_F$ | Strict singular gaps of $\mathbf{Y}$; cumulative error in perturbation regime |
-| 2 | **Parameter recovery (noiseless)** | $\|\widehat{\mathbf{W}} - \mathbf{W}^\star\|_F$ in terms of per-step errors and $\kappa(\mathbf{X})$ | Same as T1 plus $\sigma_{\min}(\mathbf{X}) > 0$ |
+| 1 | **Training-error propagation** | $\Vert \mathbf{Y} - \sum_k \mathbf{b}_k \mathbf{a}_k^\top \mathbf{X} \Vert_F \le$ truncation tail + cascade-amplified $\sum_k \Vert \mathbf{\Psi}_k \Vert_F$ | Strict singular gaps of $\mathbf{Y}$; cumulative error in perturbation regime |
+| 2 | **Parameter recovery (noiseless)** | $\Vert \widehat{\mathbf{W}} - \mathbf{W}^\star \Vert_F$ in terms of per-step errors and $\kappa(\mathbf{X})$ | Same as T1 plus $\sigma_{\min}(\mathbf{X}) > 0$ |
 | 3 | **Parameter recovery (Gaussian noise)** | Bias–variance: cascade term + $\varepsilon \sqrt{n \log(1/\gamma)}$ noise term | Same plus a small-noise ordering condition |
 
 Full statements and proofs in Sections 3–4 of the paper. Plain-English summaries in [the blog](https://akyrillidis.github.io/aiowls/one_rank_at_a_time.html).
@@ -140,13 +136,6 @@ Sequential rank-3 LoRA lands in the same accuracy band as jointly trained rank-3
 <p align="center">
   <img src="https://akyrillidis.github.io/aiowls/assets/img/one_rank/rebuttal_figure2_sst2_from_ablation-1.png" width="540">
 </p>
-
-| Method | SST-2 Accuracy |
-|--------|---------------:|
-| Joint LoRA (reference) | 0.872 |
-| Sequential rank-1 (ours) | **0.872** |
-| Sequential rank-2 (ours) | 0.875 |
-| Sequential rank-3 (ours) | 0.876 |
 
 The **first sequential rank-1 component alone** matches the jointly trained rank-3 LoRA reference.
 
