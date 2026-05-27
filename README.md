@@ -21,7 +21,9 @@
 
 The sequential procedure we analyse. Given $\mathbf{X} \in \mathbb{R}^{d \times n}$ and $\mathbf{Y} \in \mathbb{R}^{m \times n}$, find low-rank $\mathbf{W} = \mathbf{B}\mathbf{A}$ of rank $r \ll \min(m, d)$ such that $\mathbf{Y} \approx \mathbf{W}\mathbf{X}$, solved **sequentially**:
 
-$$(\mathbf{a}_k, \mathbf{b}_k) = \arg\min_{\mathbf{a}, \mathbf{b}} \tfrac{1}{2}\, \Vert \mathbf{Y}_k - \mathbf{b}\, \mathbf{a}^\top \mathbf{X} \Vert_F^2 , \qquad \mathbf{Y}_{k+1} \leftarrow \mathbf{Y}_k - \mathbf{b}_k\, \mathbf{a}_k^\top \mathbf{X}.$$
+```math
+(\mathbf{a}_k, \mathbf{b}_k) = \arg\min_{\mathbf{a}, \mathbf{b}} \tfrac{1}{2}\, \Vert \mathbf{Y}_k - \mathbf{b}\, \mathbf{a}^\top \mathbf{X} \Vert_F^2 , \qquad \mathbf{Y}_{k+1} \leftarrow \mathbf{Y}_k - \mathbf{b}_k\, \mathbf{a}_k^\top \mathbf{X}.
+```
 
 <p align="center">
   <img src="https://akyrillidis.github.io/aiowls/assets/img/one_rank/rebuttal_fig1_final-1.png" width="100%">
@@ -32,13 +34,17 @@ $$(\mathbf{a}_k, \mathbf{b}_k) = \arg\min_{\mathbf{a}, \mathbf{b}} \tfrac{1}{2}\
 
 ## ✨ Key Features
 
-- **Closed-form cascade bound** — Theorem 1 gives an explicit upper bound on residual training error as
-$$\Big\Vert \mathbf{Y} - \sum_{k=1}^{r} \mathbf{b}_k \mathbf{a}_k^\top \mathbf{X} \Big\Vert_F \;\le\; \underbrace{\Big(\sum_{k \gt r}(\sigma_k^\star)^2\Big)^{1/2}}_{\text{truncation tail}} \;+\; \underbrace{\sum_{k=1}^{r}\Big(\prod_{j \lt k} \rho_j\Big)\, \Vert \mathbf{\Psi}_k \Vert_F}_{\text{cascade amplification}}$$
-where $\rho_j = 2 + 6\sigma_j^\star / \mathcal{T}_j^\star$ measures the spectral-gap amplification (singular values $\sigma_j^\star$ and gaps $\mathcal{T}_j^\star = \sigma_j^\star - \sigma_{j+1}^\star$ are those of the output matrix $\mathbf{Y}$).
+- **Closed-form cascade bound** — Theorem 1 gives an explicit upper bound on residual training error (see the equation below the bullet list). Each per-step numerical error $\boldsymbol{\Psi}_k$ is amplified by a product of factors $\rho_j = 2 + 6\sigma_j^\star / \mathcal{T}_j^\star$, where $\sigma_j^\star$ and $\mathcal{T}_j^\star = \sigma_j^\star - \sigma_{j+1}^\star$ are the singular values and gaps of the output matrix $\mathbf{Y}$.
 - **Parameter recovery, noiseless + noisy** — Theorems 2 and 3 extend the bound to true-parameter recovery, with a clean bias-variance trade-off in the truncation rank $r$ under Gaussian label noise.
 - **Practical compute prescription** — A one-parameter $\alpha$-family of schedules $t_k(\alpha) = 1 + \alpha \cdot x_k$ (where $x_k \in [+1, -1]$ is the centred position) makes the "more-first" intuition quantitative; optimal $\alpha$ saturates near $1.5$.
 - **Cross-domain validation** — Synthetic linear-regression experiments match theory tightly; LoRA on MNIST/CIFAR10/CIFAR100 (vision) and DistilBERT/SST-2 (language) probes show the qualitative pattern transfers.
 - **Honest scope** — explicitly *not* a benchmark-beating method; the contribution is **explanatory**. The deep-learning experiments are exploratory probes outside the linear theorems.
+
+The cascade bound (Theorem 1):
+
+```math
+\Big\Vert \mathbf{Y} - \sum_{k=1}^{r} \mathbf{b}_k \mathbf{a}_k^\top \mathbf{X} \Big\Vert_F \;\le\; \underbrace{\Big(\sum_{k \gt r}(\sigma_k^\star)^2\Big)^{1/2}}_{\text{truncation tail}} \;+\; \underbrace{\sum_{k=1}^{r}\Big(\prod_{j \lt k} \rho_j\Big)\, \Vert \boldsymbol{\Psi}_k \Vert_F}_{\text{cascade amplification}}
+```
 
 ---
 
@@ -46,7 +52,7 @@ where $\rho_j = 2 + 6\sigma_j^\star / \mathcal{T}_j^\star$ measures the spectral
 
 | # | Theorem | What it bounds | Assumptions |
 |---|---------|----------------|-------------|
-| 1 | **Training-error propagation** | $\Vert \mathbf{Y} - \sum_k \mathbf{b}_k \mathbf{a}_k^\top \mathbf{X} \Vert_F \le$ truncation tail + cascade-amplified $\sum_k \Vert \mathbf{\Psi}_k \Vert_F$ | Strict singular gaps of $\mathbf{Y}$; cumulative error in perturbation regime |
+| 1 | **Training-error propagation** | $\Vert \mathbf{Y} - \sum_k \mathbf{b}_k \mathbf{a}_k^\top \mathbf{X} \Vert_F \le$ truncation tail + cascade-amplified $\sum_k \Vert \boldsymbol{\Psi}_k \Vert_F$ | Strict singular gaps of $\mathbf{Y}$; cumulative error in perturbation regime |
 | 2 | **Parameter recovery (noiseless)** | $\Vert \widehat{\mathbf{W}} - \mathbf{W}^\star \Vert_F$ in terms of per-step errors and $\kappa(\mathbf{X})$ | Same as T1 plus $\sigma_{\min}(\mathbf{X}) > 0$ |
 | 3 | **Parameter recovery (Gaussian noise)** | Bias–variance: cascade term + $\varepsilon \sqrt{n \log(1/\gamma)}$ noise term | Same plus a small-noise ordering condition |
 
