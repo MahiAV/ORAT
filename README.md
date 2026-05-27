@@ -1,7 +1,6 @@
 <p align="center">
   <h1 align="center">One Rank at a Time (ORAT)</h1>
   <p align="center"><strong>Cascading Error Dynamics in Sequential Learning</strong></p>
-  <p align="center"><em>Code and figure-reproduction bundle for the TMLR-accepted paper.</em></p>
   <p align="center">
     <a href="https://arxiv.org/abs/2505.22602"><img src="https://img.shields.io/badge/arXiv-2505.22602-b31b1b.svg"></a>
     <a href="https://akyrillidis.github.io/aiowls/one_rank_at_a_time.html"><img src="https://img.shields.io/badge/Blog-AI--OWLS-FFD400.svg"></a>
